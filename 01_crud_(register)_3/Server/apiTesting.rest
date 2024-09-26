@@ -1,0 +1,14 @@
+//GET http://localhost:3001/getAllUsers
+
+# POST http://localhost:3001/createUser
+# Content-Type: "application/json"
+
+# {
+#   "name":"test5",
+#   "email":"test5@gmail.com",
+#   "password":"test5",
+#   "mobile":"4565653423",
+#   "address":"valsad",
+#   "gender":"female",
+#   "course":"msc"
+# }
