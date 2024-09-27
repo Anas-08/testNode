@@ -6,7 +6,11 @@ import Navbar from './Navbar'
 import FormHome from './FormRegistration/FormHome'
 import InsertForm from './FormRegistration/InsertForm'
 import UpdateForm from './FormRegistration/UpdateForm'
+
 import ErrorPage from './ErrorPage'
+
+import BlogHome from './Blog/BlogHome'
+import BlogInsert from './Blog/BlogInsert'
 
 function App() {
   
@@ -19,8 +23,12 @@ function App() {
       
       <Route path='question1' element={<FormHome/>} >
         <Route path='user' element={<InsertForm />} /> 
-        <Route path=':id' element={<UpdateForm />} />
       </Route>
+         
+      <Route path='question2' element={<BlogHome />} >
+        <Route path='blog' element={<BlogInsert />} /> 
+      </Route>
+      
 
       <Route path='*' element={<ErrorPage/>}/>
     

@@ -9,6 +9,7 @@ const dbConnect = require("./config/dbConnect");
 
 // importing routes
 const formRoute = require('./routes/formRoute')
+const blogRoute = require('./routes/blogRoute')
 
 const app = express()
 
@@ -17,9 +18,12 @@ app.use(express.json())
 app.use(cors())
 
 // using routes (from the import routes)
+
 // app.use("/",formRoute)
 // app.use(formRoute)
 app.use("/question1",formRoute)
+
+app.use("/question2",blogRoute)
 
 app.get("/",(req, res)=>{
     res.send("Testing")

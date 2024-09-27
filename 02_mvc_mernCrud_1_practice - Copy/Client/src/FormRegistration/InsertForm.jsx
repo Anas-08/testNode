@@ -4,6 +4,7 @@ import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom'
 
 const InsertForm = () => {
   const navigate = useNavigate();
+  
   const [formData, setFormData] = useState({
     name : "",
     email : "",
@@ -13,6 +14,9 @@ const InsertForm = () => {
     gender : "",
     course : ""
   })
+
+  const [id, setId] = useState(null)
+
 
   function handleChange(e){
       let name = e.target.name
@@ -24,16 +28,26 @@ const InsertForm = () => {
   }
 
   // insert data(while submit the form)
+ async function insert(){
+    try{
+      const res = await axios.post("http://localhost:3001/question1/user",formData)
+      if(res.status === 200){
+        alert('Record Inserted')
+      }
+    }catch(error){
+      console.log(error)
+    }
+ }
+
  async function handleSubmit(e){
     e.preventDefault()
-    console.log(formData)
-    const res = await axios.post("http://localhost:3001/question1/user",formData)
-    // console.log(res)
-    // console.log(res.data)
-    // console.log(res.data.value)
-    if(res.status === 200){
-      alert('Record Inserted')
-
+   
+      if(!id){
+          await insert()
+      }else{
+        await update()
+        setId(null)
+      }
       setFormData({
         name : "",
         email : "",
@@ -45,8 +59,8 @@ const InsertForm = () => {
       })
       getUserData()
 
-    }
   }
+  
 
   // get data
   const [userData, setUserData] = useState([])
@@ -60,6 +74,7 @@ const InsertForm = () => {
     getUserData()
   },[])
 
+  // for delete
  async function handleDelete(id){
     const res = await axios.delete(`http://localhost:3001/question1/user/${id}`)
     if(res.status === 200){
@@ -67,6 +82,40 @@ const InsertForm = () => {
       getUserData()
     }
   }
+
+  // for update
+ async function update(){
+    try{
+      const res = await axios.put(`http://localhost:3001/question1/user/${id}`,formData)
+      if(res.status === 200){
+        alert('Record Updated')
+        getUserData()
+      }
+    }catch(error){
+      console.log(error)
+    }
+  }
+
+  function handleEdit(singleUserDetail){
+    setFormData({
+      name : singleUserDetail.name,
+      email : singleUserDetail.email,
+      password : singleUserDetail.password,
+      mobile : singleUserDetail.mobile,
+      address : singleUserDetail.address,
+      gender : singleUserDetail.gender,
+      course : singleUserDetail.course
+    })
+    setId(singleUserDetail._id)
+  }
+
+  // search 
+  const [query, setQuery] = useState('')
+  function search(){
+    const filteredData = userData.filter((data) => data.name.toLowerCase().includes('test414'))
+    console.log(filteredData)
+  }
+  // search()
 
   return (
     <>
@@ -108,7 +157,7 @@ const InsertForm = () => {
               </tr>
               <tr>
                 <td></td>
-                <td><input type="submit" value='Regiser' /></td>
+                <td><input type="submit" value={!id ? "Insert" : "Update"} /></td>
               </tr>
             </table>
           </form>
@@ -118,7 +167,15 @@ const InsertForm = () => {
           <br />
 
           <h2>Display Data</h2>
+        <div>
+          <table>
+            <tr>
+              <td>Search : </td>
+              <td><input type="text" placeholder='search name' onChange={(e)=> setQuery(e.target.value)} /></td>
+            </tr>
 
+          </table>
+        </div>
           <table border='1px solid black' cellPadding='14' cellSpacing='0'>
             <tr>
               <th>Name</th>
@@ -132,7 +189,7 @@ const InsertForm = () => {
             </tr>
             {
               userData.length === 0 ? (<td colSpan='7'>No Record Inserted yet !</td>) : (
-                userData.map((item, index)=>(
+                userData.filter((data) => data.name.toLowerCase().includes(query)).map((item, index)=>(
                   <tr key={index}>
 
                    <td>{item.name}</td> 
@@ -144,7 +201,7 @@ const InsertForm = () => {
                    <td>{item.course}</td> 
                    {/* <td> <Link to={`${item._id}`} >Edit</Link> </td>  */}
                    {/* <td> <Redirect to={`${item._id}`} >Edit</Redirect> </td>  */}
-                   <td> <button onClick={ ()=> navigate(`${item._id}`) } > Edit </button> </td> 
+                   <td> <button onClick={ ()=> handleEdit(item) } > Edit </button> </td> 
                    <td><button onClick={()=>handleDelete(item._id)}>Delete</button></td> 
                   </tr>
                 ))
