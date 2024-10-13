@@ -1,0 +1,18 @@
+POST http://localhost:3001/products
+content-type: application/json
+
+{
+    "productName" : "Tv",
+    "productCategory" : "Electronic",
+    "productPrice" : 95000,
+    "ProductQuantity" : 15 
+}
+
+###
+
+GET http://localhost:3001/products
+
+###
+
+GET http://localhost:3001/products/670bbc83a4ee69ebcaf7886b
+
