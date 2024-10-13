@@ -32,11 +32,34 @@ const Display = () => {
     }
   }
 
+  // for filtering
+  const [query, setQuery] = useState("")
+
+  // function filteredData(){
+  //   const data = blogData.filter((data)=> data.type.includes(query))
+  //   console.log(data)
+  // }
+  // filteredData()
   return (
     <>
      <h1> Display</h1> 
+     <tr>
+              <td>
+                <select name="type" id="type" onChange={(e)=>setQuery(e.target.value)}>
+                  <option value="">All</option>
+                  <option value="javaScript">Javascript</option>
+                  <option value="java">Java</option>
+                  <option value="C++">C++</option>
+                  <option value="python">Python</option>
+                </select>
+              </td>
+            </tr>
+
     {
-      blogData.map((item, index)=>(
+      blogData.length === 0 ? (<h2>No Blog Posted yet..</h2>) : ( 
+
+
+        blogData.filter((data)=> data.type.includes(query)).map((item, index)=>(
         <div key={index} style={{border:'1px solid black', padding:'12px', margin:'4px', width:'350px'}} >
           <h2>{item.name}</h2>
           <h2>{item.desc}</h2>
@@ -47,6 +70,10 @@ const Display = () => {
           </div>
         </div>
       ))
+
+
+    )
+
     }
     </>
   )

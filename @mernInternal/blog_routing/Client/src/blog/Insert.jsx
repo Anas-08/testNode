@@ -49,7 +49,7 @@ const Insert = () => {
             </tr>  
             <tr>
               <td>
-                <select name="type" id="type" value={blog.desc} onChange={handleChange}>
+                <select name="type" id="type" value={blog.type} onChange={handleChange}>
                   <option value="javaScript">Javascript</option>
                   <option value="java">Java</option>
                   <option value="C++">C++</option>
