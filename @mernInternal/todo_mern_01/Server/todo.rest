@@ -1,0 +1,16 @@
+GET http://localhost:3001/todos
+
+
+
+###
+DELETE http://localhost:3001/todos/670a207f48e5319d41549553
+
+
+###
+
+POST http://localhost:3001/todos HTTP/1.1
+content-type: application/json
+
+{
+    "name": "taks 3",
+}

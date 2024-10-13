@@ -1,0 +1,14 @@
+POST http://localhost:3001/blogs
+Content-Type: application/json
+
+{
+    "name" : "blog 2",
+    "desc" : "test 2 description",
+    "type" : "c"
+}
+
+
+
+### 
+
+GET http://localhost:3001/blogs
