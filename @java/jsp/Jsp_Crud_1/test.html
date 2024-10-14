@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index Page</title>
+</head>
+<body>
+
+    <h1>Index Page</h1>
+    <a href="">Insert Data</a>
+    
+    <h1>Insert Product</h1>
+    <form action="">
+        <table>
+            <input type="hidden" name="action" value="insertProduct" / >
+            <tr>
+                <td>Product Id : </td>
+                <td><input type="text" name="pid" placeholder="enter product id" required></td>
+            </tr>
+            <tr>
+                <td>Product Name : </td>
+                <td><input type="text" name="name" placeholder="enter product" required ></td>
+            </tr>
+            <tr>
+                <td>Product Category : </td>
+                <td>
+                    <select name="category" id="category">
+                        <option value="electronic">Electronic</option>
+                        <option value="cosmetic">Cosmetic</option>
+                        <option value="cloth">Cloth</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Product Price : </td>
+                <td><input type="text" name="price" placeholder="enter price" required ></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" name="sub" value="Add Product"></td>
+            </tr>
+        </table>
+    </form>
+
+        <script>alert('inserted')</script>
+
+        <table border="1" cellpadding="12px" cellspacing="0" >
+            <tr>
+                <th>Pid</th>
+                <th>Product Name</th>
+                <th>Product Category</th>
+                <th>Product Price</th>
+                <th>Action</th>
+            </tr>
+        </table>
+
+        <form action="" method="post">
+            <input type="hidden" name="action" value="login">
+            <table>
+                <tr>
+                    <td>Name : </td>
+                    <td><input type="text" name="name" placeholder="enter name" required></td>
+                </tr>
+                <tr>
+                    <td>Password : </td>
+                    <td><input type="password" name="password" placeholder="enter password" required></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="login"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>not register ? <a href="">register here</a></td>
+                </tr>
+            </table>
+        </form>
+
+        <div style="border: 1px solid black, padding: 12px;" >
+
+        </div>
+</body>
+</html>
