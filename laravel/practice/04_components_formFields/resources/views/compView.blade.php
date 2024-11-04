@@ -1,0 +1,1 @@
+<x-comp1 msg="anything you want to pass" />
