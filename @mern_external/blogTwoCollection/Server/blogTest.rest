@@ -1,0 +1,26 @@
+post http://localhost:3002/question1/blogs
+Content-Type: application/json
+
+{
+    "title": "demo 5",
+    "description": "demo 5 description",
+    "author": "test5",
+    "category": "67339922a1bcc3c269a8dd1e"
+}
+
+###
+
+get http://localhost:3002/question1/blogs
+
+
+###
+post http://localhost:3002/question1/categorys
+Content-Type: application/json
+
+{
+    "name": "news"    
+}
+
+###
+
+get http://localhost:3002/question1/categorys
